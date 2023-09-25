@@ -1,8 +1,8 @@
 ---
 to: "<%= struct.generateEnable ? `${rootDirectory}/main.py` : null %>"
 inject: true
-skip_if: # api for <%= struct.name.pascalName %>
-after: # define api operations
+skip_if: "# api for <%= struct.name.pascalName %>"
+after: "# define api operations"
 ---
 # api for <%= struct.name.pascalName %>
 @app.get('/<%= struct.name.lowerCamelPluralName %>', response_model=<%= struct.name.PascalPluralName %>)
