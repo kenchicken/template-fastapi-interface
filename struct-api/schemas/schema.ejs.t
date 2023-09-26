@@ -12,13 +12,13 @@ class <%= struct.name.pascalName %>(BaseModel):
     <%= field.name.lowerCamelName %>: str | None = Field(None, example="")
   <%_ } -%>
   <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %>: int | None = Field(None, example="")
+    <%= field.name.lowerCamelName %>: int | None = Field(None, example=0)
   <%_ } -%>
   <%_ if (field.dataType === 'time') { -%>
     <%= field.name.lowerCamelName %>: datetime.time | None = Field(None, example="")
   <%_ } -%>
   <%_ if (field.dataType === 'bool') { -%>
-    <%= field.name.lowerCamelName %>: bool | None = Field(None, example="")
+    <%= field.name.lowerCamelName %>: bool | None = Field(None, example=true)
   <%_ } -%>
 <%_ }) -%>
 

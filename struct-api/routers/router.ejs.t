@@ -14,7 +14,7 @@ def list_<%= struct.name.lowerCamelPluralName %>():
     """
     List all <%= struct.name.lowerCamelPluralName %>
     """
-    return{"message": "list_<%= struct.name.lowerCamelPluralName %>"}
+    return []
 
 
 @router.get('/<%= struct.name.lowerCamelPluralName %>/{<%= struct.name.lowerCamelName %>_id}', response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
@@ -22,7 +22,7 @@ def get_<%= struct.name.lowerCamelName %>(<%= struct.name.lowerCamelName %>_id: 
     """
     Get <%= struct.name.lowerCamelName %> by id
     """
-    return{"message": "get_<%= struct.name.lowerCamelName %>"}
+    return {}
 
 
 @router.post('/<%= struct.name.lowerCamelPluralName %>', response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
@@ -30,7 +30,7 @@ def create_<%= struct.name.lowerCamelName %>(<%= struct.name.lowerCamelName %>: 
     """
     Create <%= struct.name.lowerCamelName %>
     """
-    return{"message": "create_<%= struct.name.lowerCamelName %>"}
+    return {}
 
 
 @router.put('/<%= struct.name.lowerCamelPluralName %>/{<%= struct.name.lowerCamelName %>_id}', response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
@@ -38,7 +38,7 @@ def update_<%= struct.name.lowerCamelName %>(<%= struct.name.lowerName %>_id: in
     """
     Update <%= struct.name.lowerCamelName %>
     """
-    return{"message": "update_<%= struct.name.lowerCamelName %>"}
+    return {}
 
 
 @router.delete('/<%= struct.name.lowerCamelPluralName %>/{<%= struct.name.lowerCamelName %>_id}')
@@ -46,5 +46,5 @@ def delete_<%= struct.name.lowerCamelName %>(<%= struct.name.lowerCamelName %>_i
     """
     Delete <%= struct.name.lowerCamelName %> by id
     """
-    return{"message": "delete_<%= struct.name.lowerCamelName %>"}
+    return
 
