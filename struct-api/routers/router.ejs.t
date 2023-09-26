@@ -1,12 +1,11 @@
 ---
-to: "<%= struct.generateEnable ? `${rootDirectory}/api/routers/<%= struct.name.lowerCamelName %>.py` : null %>"
+to: "<%= struct.generateEnable ? `${rootDirectory}/api/routers/${struct.name.lowerCamelName}.py` : null %>"
 force: true
 ---
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-import api.schemas.task as task_schema
-import api.cruds.task as task_crud
+import api.schemas.<%= struct.name.lowerCamelName %> as <%= struct.name.lowerCamelName %>_schema
 from api.db import get_db
 
 router = APIRouter()
