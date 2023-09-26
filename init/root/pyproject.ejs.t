@@ -6,7 +6,7 @@ force: true
 name = "<%= projectName %>"
 version = "1.0"
 description = ""
-authors = ""
+authors = [""]
 readme = "README.md"
 packages = [{include = "<%= projectName %>"}]
 

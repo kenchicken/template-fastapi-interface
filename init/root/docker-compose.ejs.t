@@ -4,7 +4,7 @@ force: true
 ---
 version: '3'
 services:
-  demo-app:
+  app:
     build: .
     volumes:
       - .dockervenv:/src/.venv

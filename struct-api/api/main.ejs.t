@@ -1,0 +1,23 @@
+---
+to: <%= rootDirectory %>/api/main.py
+inject: true
+skip_if: "# define api routers"
+after: "# define api routers"
+---
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from api.routers import
+ # define api routers
+ <%= struct.name.lowerCamelName %>,
+
+app = FastAPI()
+app.include_router(task.router)
+app.include_router(done.router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
