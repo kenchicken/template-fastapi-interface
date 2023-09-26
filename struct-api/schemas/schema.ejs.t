@@ -18,7 +18,7 @@ class <%= struct.name.pascalName %>(BaseModel):
     <%= field.name.lowerCamelName %>: datetime.time | None = Field(None, example="")
   <%_ } -%>
   <%_ if (field.dataType === 'bool') { -%>
-    <%= field.name.lowerCamelName %>: bool | None = Field(None, example=true)
+    <%= field.name.lowerCamelName %>: bool | None = Field(None, example=True)
   <%_ } -%>
 <%_ }) -%>
 
