@@ -5,12 +5,10 @@ force: true
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routers import
-  # define api routers
+from api.routers import *
 
 app = FastAPI()
-app.include_router(task.router)
-app.include_router(done.router)
+# define api routers
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
