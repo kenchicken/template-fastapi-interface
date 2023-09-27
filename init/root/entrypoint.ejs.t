@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/entrypoint.sh
+to: <%= rootDirectory %>/backend/entrypoint.sh
 force: true
 ---
 #!/bin/bash

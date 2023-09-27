@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/api/main.py
+to: <%= rootDirectory %>/backend/main.py
 inject: true
 skip_if: "# api routers for <%= struct.name.lowerCamelName %>"
 after: "# define api routers"

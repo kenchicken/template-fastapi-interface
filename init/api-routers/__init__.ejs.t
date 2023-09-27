@@ -1,4 +1,4 @@
 ---
-to: <%= rootDirectory %>/api/routers/__init__.py
+to: <%= rootDirectory %>/backend/routers/__init__.py
 force: true
 ---

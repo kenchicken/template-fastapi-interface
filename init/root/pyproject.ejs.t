@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/pyproject.toml
+to: <%= rootDirectory %>/backend/pyproject.toml
 force: true
 ---
 [tool.poetry]
