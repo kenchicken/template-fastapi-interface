@@ -4,7 +4,7 @@ force: true
 ---
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.routers import (
+from routers import (
   # import api routers
 )
 
