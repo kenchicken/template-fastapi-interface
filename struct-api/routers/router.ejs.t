@@ -4,7 +4,7 @@ force: true
 ---
 from fastapi import APIRouter, Depends, HTTPException
 
-import backend.schemas.<%= struct.name.lowerCamelName %> as <%= struct.name.lowerCamelName %>_schema
+import schemas.<%= struct.name.lowerCamelName %> as <%= struct.name.lowerCamelName %>_schema
 
 router = APIRouter()
 
