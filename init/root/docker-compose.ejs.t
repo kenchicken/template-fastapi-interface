@@ -4,26 +4,32 @@ force: true
 ---
 version: '3'
 services:
-  app:
-    build: .
-    volumes:
-      - .dockervenv:/src/.venv
-      - .:/src
+  backend:
+    container_name: akd_backend
+    build:
+      context: "./backend"
+      dockerfile: "Dockerfile"
     ports:
-      - 8000:8000  # ホストマシンのポート8000を、docker内のポート8000に接続する
+      - 8000:8000
+      - 5678:5678
+    volumes:
+      - ./backend:/backend
     environment:
-      - WATCHFILES_FORCE_POLLING=true  # 環境によってホットリロードのために必要
+      - ENVIRON
+    depends_on:
+      - db
   db:
-    image: mysql:8.0
-    platform: linux/x86_64  # AppleシリコンのMac（M1/M2など）の場合必要
+    image: postgres:15.4
+    # host: postgres-db
+    container_name: postgres_db
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'  # rootアカウントをパスワードなしで作成
-      MYSQL_DATABASE: 'demo'  # 初期データベースとしてdemoを設定
-      TZ: 'Asia/Tokyo'  # タイムゾーンを日本時間に設定
+      TZ: Asia/Tokyo
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     volumes:
-      - mysql_data:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password  # MySQL8.0ではデフォルトが"caching_sha2_password"で、ドライバが非対応のため変更
+      - postgres_data:/var/lib/postgresql/data/
     ports:
-      - 33306:3306  # ホストマシンのポート33306を、docker内のポート3306に接続する
+      - 5432:5432
 volumes:
-  mysql_data:
+  postgres_data:

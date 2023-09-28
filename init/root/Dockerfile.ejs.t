@@ -5,7 +5,7 @@ force: true
 FROM python:3.11.5-slim
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /src
+WORKDIR /backend
 
 RUN pip install poetry
 
