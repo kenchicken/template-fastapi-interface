@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 class <%= struct.name.pascalName %>Base(BaseModel):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name !== 'id') { -%>
+  <%_ if (field.name.lowerCamelName !== 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %>: str | None = Field(None, example="")
     <%_ } -%>
@@ -31,7 +31,7 @@ class <%= struct.name.pascalName %>Request(<%= struct.name.pascalName %>Base):
 
 class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name === 'id') { -%>
+  <%_ if (field.name.lowerCamelName === 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %>: str
     <%_ } -%>
@@ -47,7 +47,7 @@ class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request
 
 class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name === 'id') { -%>
+  <%_ if (field.name.lowerCamelName === 'id') { -%>
   <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %>: str
   <%_ } -%>
