@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/backend/models/__init__.py
+to: <%= rootDirectory %>/backend/app/models/__init__.py
 inject: true
 skip_if: "# import model for <%= struct.name.lowerCamelName %>"
 after: "# import models"

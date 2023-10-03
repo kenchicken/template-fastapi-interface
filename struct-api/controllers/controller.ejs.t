@@ -1,5 +1,5 @@
 ---
-to: "<%= struct.generateEnable ? `${rootDirectory}/backend/controllers/${struct.name.lowerCamelName}_controller.py` : null %>"
+to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/controllers/${struct.name.lowerCamelName}_controller.py` : null %>"
 force: true
 ---
 import logging

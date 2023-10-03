@@ -1,5 +1,5 @@
 ---
-to: "<%= struct.generateEnable ? `${rootDirectory}/backend/schemas/${struct.name.lowerCamelName}.py` : null %>"
+to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/schemas/${struct.name.lowerCamelName}.py` : null %>"
 force: true
 ---
 import datetime

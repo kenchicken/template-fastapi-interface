@@ -1,5 +1,5 @@
 ---
-to: "<%= struct.generateEnable ? `${rootDirectory}/backend/cruds/${struct.name.lowerCamelName}.py` : null %>"
+to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/cruds/${struct.name.lowerCamelName}.py` : null %>"
 force: true
 ---
 import logging
