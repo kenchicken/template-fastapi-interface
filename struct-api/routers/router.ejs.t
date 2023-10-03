@@ -40,7 +40,7 @@ async def get_<%= struct.name.lowerCamelName %>(
 
 @router.post('/<%= struct.name.lowerCamelName %>', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
 async def create_<%= struct.name.lowerCamelName %>(
-        <%= struct.name.lowerCamelName %>: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>,
+        <%= struct.name.lowerCamelName %>: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request,
         db: AsyncSession = Depends(get_db)
 ):
     """
@@ -51,7 +51,8 @@ async def create_<%= struct.name.lowerCamelName %>(
 
 @router.put('/<%= struct.name.lowerCamelName %>/{<%= struct.name.lowerCamelName %>_id}', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
 async def update_<%= struct.name.lowerCamelName %>(
-        <%= struct.name.lowerName %>_id: int, <%= struct.name.lowerCamelName %>: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>,
+        <%= struct.name.lowerCamelName %>_id: int,
+        <%= struct.name.lowerCamelName %>: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request,
         db: AsyncSession = Depends(get_db)
 ):
     """
