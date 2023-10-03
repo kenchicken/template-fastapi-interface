@@ -9,7 +9,7 @@ from database import Base
 from models.mixins import TimestampMixin
 
 
-class <%= struct.name.pascalName %>(BaseModel, TimestampMixin):
+class <%= struct.name.pascalName %>(Base, TimestampMixin):
     __tablename__ = '<%= struct.name.lowerCamelPluralName %>'
 
 <%_ struct.fields.forEach(function (field, key) { -%>
