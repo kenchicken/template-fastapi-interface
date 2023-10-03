@@ -28,7 +28,7 @@ async def get_<%= struct.name.lowerCamelName %>(db: AsyncSession, <%= struct.nam
 
 
 async def create_<%= struct.name.lowerCamelName %>(
-    db: AsyncSession, <%= struct.name.lowerCamelName %>_create: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Create
+    db: AsyncSession, <%= struct.name.lowerCamelName %>_create: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request
 ) -> <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>:
     <%= struct.name.lowerCamelName %> = <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>(**<%= struct.name.lowerCamelName %>_create.model_dump())
     db.add(<%= struct.name.lowerCamelName %>)
@@ -38,7 +38,7 @@ async def create_<%= struct.name.lowerCamelName %>(
 
 
 async def update_<%= struct.name.lowerCamelName %>(
-    db: AsyncSession, <%= struct.name.lowerCamelName %>_create: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Create, original: <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>
+    db: AsyncSession, <%= struct.name.lowerCamelName %>_create: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request, original: <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>
 ) -> <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>:
 <%_ struct.fields.forEach(function (field, key) { -%>
     original.<%= field.name.lowerCamelName %> = <%= struct.name.lowerCamelName %>_create.<%= field.name.lowerCamelName %>
