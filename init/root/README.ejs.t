@@ -13,7 +13,7 @@ pyenv global 3.11.x
 
 ```shell
 conda deactivate
-rm -rf .env
+rm -rf .venv
 ```
 
 - 新しいバージョンのPythonで仮想環境を作り直す
@@ -22,6 +22,7 @@ rm -rf .env
 python -m venv .venv
 source .venv/bin/activate
 ```
+### ローカルの場合
 
 - poetry管理しているライブラリーをインストールする
 
@@ -31,4 +32,30 @@ source .venv/bin/activate
 (.venv)% cd backend
 (.venv)% poetry install --no-root
 (.venv)% poetry run uvicorn main:app --host 0.0.0.0 --reload
+```
+### データベースのマイグレーション
+
+backendのコンテナに接続して実行
+
+```shell
+docker-compose exec backend bash
+```
+
+or backendのコンテナが起動していない場合
+
+```shell
+docker-compose run backend bash
+```
+
+```shell
+cd /backend/app
+poetry run alembic revision --autogenerate -m "first migration"
+poetry run alembic upgrade head
+```
+
+### API起動
+
+```shell
+cd /backend/app
+poetry run uvicorn main:app --host 0.0.0.0 --reload --log-config=log_conf.yaml
 ```

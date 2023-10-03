@@ -5,7 +5,7 @@ force: true
 version: '3'
 services:
   backend:
-    container_name: akd_backend
+    container_name: backend
     build:
       context: "./backend"
       dockerfile: "Dockerfile"

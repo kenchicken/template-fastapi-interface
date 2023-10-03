@@ -3,14 +3,13 @@ to: "<%= struct.generateEnable ? `${rootDirectory}/backend/models/${struct.name.
 force: true
 ---
 import datetime
-from sqlalchemy import create_engine, Column, String, Integer, Text, DateTime, Boolean, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, Integer, Text, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
+from database import Base
+from models.mixins import TimestampMixin
 
-BaseModel = declarative_base()
 
-
-class <%= struct.name.pascalName %>(BaseModel):
+class <%= struct.name.pascalName %>(BaseModel, TimestampMixin):
     __tablename__ = '<%= struct.name.lowerCamelPluralName %>'
 
 <%_ struct.fields.forEach(function (field, key) { -%>
@@ -19,7 +18,7 @@ class <%= struct.name.pascalName %>(BaseModel):
     <%= field.name.lowerCamelName %> = Column(String, primary_key=True, index=True)
     <%_ } -%>
     <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %> = Column(Integer, primary_key=True, index=True)
+    <%= field.name.lowerCamelName %> = Column(Integer, primary_key=True, index=True, autoincrement=True)
     <%_ } -%>
   <%_ } -%>
   <%_ if (field.name !== 'id') { -%>

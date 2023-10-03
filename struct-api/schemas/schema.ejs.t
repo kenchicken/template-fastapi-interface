@@ -9,27 +9,43 @@ from pydantic import BaseModel, Field
 class <%= struct.name.pascalName %>Base(BaseModel):
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name !== 'id') { -%>
-  <%_ if (field.dataType === 'string') { -%>
+    <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %>: str | None = Field(None, example="")
-  <%_ } -%>
-  <%_ if (field.dataType === 'number') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'number') { -%>
     <%= field.name.lowerCamelName %>: int | None = Field(None, example=0)
-  <%_ } -%>
-  <%_ if (field.dataType === 'time') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'time') { -%>
     <%= field.name.lowerCamelName %>: datetime.time | None = Field(None, example="")
-  <%_ } -%>
-  <%_ if (field.dataType === 'bool') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'bool') { -%>
     <%= field.name.lowerCamelName %>: bool | None = Field(None, example=True)
-  <%_ } -%>
+    <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
 
 
-class <%= struct.name.pascalName %>Create(<%= struct.name.pascalName %>Base):
+class <%= struct.name.pascalName %>Request(<%= struct.name.pascalName %>Base):
     pass
 
 
-class <%= struct.name.pascalName %>CreateResponse(<%= struct.name.pascalName %>Create):
+class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request):
+<%_ struct.fields.forEach(function (field, key) { -%>
+  <%_ if (field.name === 'id') { -%>
+    <%_ if (field.dataType === 'string') { -%>
+    <%= field.name.lowerCamelName %>: str
+    <%_ } -%>
+    <%_ if (field.dataType === 'number') { -%>
+    <%= field.name.lowerCamelName %>: int
+    <%_ } -%>
+  <%_ } -%>
+<%_ }) -%>
+
+    class Config:
+        from_attributes = True
+
+
+class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name === 'id') { -%>
   <%_ if (field.dataType === 'string') { -%>
@@ -42,21 +58,5 @@ class <%= struct.name.pascalName %>CreateResponse(<%= struct.name.pascalName %>C
 <%_ }) -%>
 
     class Config:
-        orm_mode = True
-
-
-class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
-<%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name === 'id') { -%>
-  <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerCamelName %>: str | None = Field(None, example="")
-  <%_ } -%>
-  <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %>: int | None = Field(None, example=0)
-  <%_ } -%>
-  <%_ } -%>
-<%_ }) -%>
-
-    class Config:
-        orm_mode = True
+        from_attributes = True
 

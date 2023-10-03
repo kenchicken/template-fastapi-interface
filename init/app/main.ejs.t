@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/backend/main.py
+to: <%= rootDirectory %>/backend/app/main.py
 force: true
 ---
 from fastapi import FastAPI

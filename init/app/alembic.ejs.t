@@ -1,5 +1,5 @@
 ---
-to: <%= rootDirectory %>/backend/alermic.ini
+to: <%= rootDirectory %>/backend/app/alembic.ini
 force: true
 ---
 # A generic, single database configuration.
@@ -65,7 +65,7 @@ version_path_separator = os  # Use os.pathsep. Default configuration used for ne
 # are written from script.py.mako
 # output_encoding = utf-8
 
-sqlalchemy.url = driver://user:pass@localhost/dbname
+# sqlalchemy.url = driver://user:pass@localhost/dbname
 
 
 [post_write_hooks]
