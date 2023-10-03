@@ -13,7 +13,7 @@ class <%= struct.name.pascalName %>(Base, TimestampMixin):
     __tablename__ = '<%= struct.name.lowerCamelPluralName %>'
 
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name === 'id') { -%>
+  <%_ if (field.name.lowerCamelName === 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %> = Column(String, primary_key=True, index=True)
     <%_ } -%>
@@ -21,18 +21,18 @@ class <%= struct.name.pascalName %>(Base, TimestampMixin):
     <%= field.name.lowerCamelName %> = Column(Integer, primary_key=True, index=True, autoincrement=True)
     <%_ } -%>
   <%_ } -%>
-  <%_ if (field.name !== 'id') { -%>
-  <%_ if (field.dataType === 'string') { -%>
+  <%_ if (field.name.lowerCamelName !== 'id') { -%>
+    <%_ if (field.dataType === 'string') { -%>
     <%= field.name.lowerCamelName %> = Column(String)
-  <%_ } -%>
-  <%_ if (field.dataType === 'number') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'number') { -%>
     <%= field.name.lowerCamelName %> = Column(Integer)
-  <%_ } -%>
-  <%_ if (field.dataType === 'time') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'time') { -%>
     <%= field.name.lowerCamelName %> = Column(DateTime)
-  <%_ } -%>
-  <%_ if (field.dataType === 'bool') { -%>
+    <%_ } -%>
+    <%_ if (field.dataType === 'bool') { -%>
     <%= field.name.lowerCamelName %> = Column(Boolean)
-  <%_ } -%>
+    <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
