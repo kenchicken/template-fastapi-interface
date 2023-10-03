@@ -36,7 +36,7 @@ async def update_<%= struct.name.lowerCamelName %>(
         db: AsyncSession,
         <%= struct.name.lowerCamelName %>_id: int,
         <%= struct.name.lowerCamelName %>_request: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request
-) -> <%= struct.name.lowerCamelPluralName %>_model.<%= struct.name.pascalName %> | None:
+) -> <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %> | None:
     original = await crud.get_<%= struct.name.lowerCamelName %>(db, <%= struct.name.lowerCamelName %>_id)
     if original is None:
         return None
