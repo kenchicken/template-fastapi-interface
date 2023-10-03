@@ -5,4 +5,3 @@ force: true
 from database import Base
 
 # import models
-from models.company import Company
