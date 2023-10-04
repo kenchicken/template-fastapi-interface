@@ -40,7 +40,7 @@ async def update_<%= struct.name.lowerCamelName %>(
     original = await crud.get_<%= struct.name.lowerCamelName %>(db, <%= struct.name.lowerCamelName %>_id)
     if original is None:
         return None
-    return await crud.update_<%= struct.name.lowerCamelName %>(db, original, <%= struct.name.lowerCamelName %>_request)
+    return await crud.update_<%= struct.name.lowerCamelName %>(db, <%= struct.name.lowerCamelName %>_request, original)
 
 
 async def delete_<%= struct.name.lowerCamelName %>(
