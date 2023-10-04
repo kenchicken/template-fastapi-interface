@@ -41,7 +41,9 @@ async def update_<%= struct.name.lowerCamelName %>(
     db: AsyncSession, <%= struct.name.lowerCamelName %>_create: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Request, original: <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>
 ) -> <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>:
 <%_ struct.fields.forEach(function (field, key) { -%>
+  <%_ if (field.name.lowerCamelName !== 'id') { -%>
     original.<%= field.name.lowerCamelName %> = <%= struct.name.lowerCamelName %>_create.<%= field.name.lowerCamelName %>
+  <%_ } -%>
 <%_ }) -%>
     db.add(original)
     await db.commit()
