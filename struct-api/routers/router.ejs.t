@@ -68,7 +68,7 @@ async def update_<%= struct.name.lowerCamelName %>(
 async def delete_<%= struct.name.lowerCamelName %>(
         <%= struct.name.lowerCamelName %>_id: int,
         db: AsyncSession = Depends(get_db)
-):
+) -> int | None:
     """
     Delete <%= struct.name.lowerCamelName %> by id
     """

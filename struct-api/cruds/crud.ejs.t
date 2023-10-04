@@ -51,7 +51,7 @@ async def update_<%= struct.name.lowerCamelName %>(
     return original
 
 
-async def delete_<%= struct.name.lowerCamelName %>(db: AsyncSession, original: <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>) -> None:
+async def delete_<%= struct.name.lowerCamelName %>(db: AsyncSession, original: <%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>) -> int | None:
     await db.delete(original)
     await db.commit()
     return original.id
