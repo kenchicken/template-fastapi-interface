@@ -26,7 +26,6 @@ async def list_<%= struct.name.lowerCamelPluralName %>(
         "<%= struct.name.lowerCamelPluralName %>": <%= struct.name.lowerCamelPluralName %>,
         "count": len(<%= struct.name.lowerCamelPluralName %>)
     })
-    return await <%= struct.name.lowerCamelName %>_controller.list_<%= struct.name.lowerCamelPluralName %>(db)
 
 
 @router.get('/<%= struct.name.lowerCamelName %>/{<%= struct.name.lowerCamelName %>_id}', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>)
