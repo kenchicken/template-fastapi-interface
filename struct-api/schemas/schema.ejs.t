@@ -60,3 +60,7 @@ class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
     class Config:
         from_attributes = True
 
+
+class <%= struct.name.PascalPluralName %>Response(BaseModel):
+    <%= struct.name.lowerCamelPluralName %>: list[<%= struct.name.pascalName %>]
+    count: int

@@ -14,13 +14,18 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.get('/<%= struct.name.lowerCamelName %>', tags=['<%= struct.name.lowerCamelName %>'], response_model=list[<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>])
+@router.get('/<%= struct.name.lowerCamelPluralName %>', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.PascalPluralName %>Response)
 async def list_<%= struct.name.lowerCamelPluralName %>(
         db: AsyncSession = Depends(get_db)
 ):
     """
     List all <%= struct.name.lowerCamelPluralName %>
     """
+    <%= struct.name.lowerCamelPluralName %> = await <%= struct.name.lowerCamelName %>_controller.list_<%= struct.name.lowerCamelPluralName %>(db)
+    return <%= struct.name.lowerCamelName %>_schema.<%= struct.name.PascalPluralName %>Response(**{
+        "<%= struct.name.lowerCamelPluralName %>": <%= struct.name.lowerCamelPluralName %>,
+        "count": len(<%= struct.name.lowerCamelPluralName %>)
+    })
     return await <%= struct.name.lowerCamelName %>_controller.list_<%= struct.name.lowerCamelPluralName %>(db)
 
 
