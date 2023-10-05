@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 async def list_<%= struct.name.lowerCamelPluralName %>(db: AsyncSession) -> list[<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>]:
-    result: Result = await db.execute(select(<%= struct.name.lowerCamelName %>_model.Company))
+    result: Result = await db.execute(select(<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>))
     <%= struct.name.lowerCamelPluralName %> = result.scalars().all()
     return <%= struct.name.lowerCamelPluralName %>
 
