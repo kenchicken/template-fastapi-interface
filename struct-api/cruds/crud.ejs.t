@@ -14,11 +14,11 @@ import schemas.<%= struct.name.lowerCamelName %> as <%= struct.name.lowerCamelNa
 logger = logging.getLogger(__name__)
 
 
-async def list_<%= struct.name.lowerCamelPluralName %>(db: AsyncSession) -> list[<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>]:
+async def list_<%= struct.name.lowerCamelPluralName %>(db: AsyncSession, condition: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Condition) -> list[<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>]:
     filters = []
     conditions = condition.model_dump(exclude_none=True)
     for key, value in conditions.items():
-        filters.append(getattr(contract_model.Contract, key) == value)
+        filters.append(getattr(<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>, key) == value)
     result: Result = await db.execute(
         select(<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>)
         .filter(*filters)
