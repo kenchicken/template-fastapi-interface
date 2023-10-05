@@ -61,7 +61,7 @@ class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
         from_attributes = True
 
 
-class <%= struct.name.pascalName %>Condition(ContractBase):
+class <%= struct.name.pascalName %>Condition(<%= struct.name.pascalName %>Base):
     id: int | None = Field(None, example=0)
 
 
