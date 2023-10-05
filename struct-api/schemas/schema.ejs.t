@@ -61,6 +61,10 @@ class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
         from_attributes = True
 
 
-class <%= struct.name.PascalPluralName %>Response(BaseModel):
+class <%= struct.name.pascalName %>Condition(ContractBase):
+    id: int | None = Field(None, example=0)
+
+
+class <%= struct.name.pascalPluralName %>Response(BaseModel):
     <%= struct.name.lowerCamelPluralName %>: list[<%= struct.name.pascalName %>]
     count: int

@@ -14,15 +14,34 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.get('/<%= struct.name.lowerCamelPluralName %>', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.PascalPluralName %>Response)
+@router.get('/<%= struct.name.lowerCamelPluralName %>', tags=['<%= struct.name.lowerCamelName %>'], response_model=<%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalPluralName %>Response)
 async def list_<%= struct.name.lowerCamelPluralName %>(
+<%_ struct.fields.forEach(function (field, key) { -%>
+  <%_ if (field.dataType === 'string') { -%>
+        <%= field.name.lowerCamelName %>: str = None,
+  <%_ } -%>
+  <%_ if (field.dataType === 'number') { -%>
+        <%= field.name.lowerCamelName %>: int = None,
+  <%_ } -%>
+  <%_ if (field.dataType === 'time') { -%>
+        <%= field.name.lowerCamelName %>: datetime.datetime = None,
+  <%_ } -%>
+  <%_ if (field.dataType === 'bool') { -%>
+        <%= field.name.lowerCamelName %>: bool = None,
+  <%_ } -%>
+<%_ }) -%>
         db: AsyncSession = Depends(get_db)
 ):
     """
     List all <%= struct.name.lowerCamelPluralName %>
     """
-    <%= struct.name.lowerCamelPluralName %> = await <%= struct.name.lowerCamelName %>_controller.list_<%= struct.name.lowerCamelPluralName %>(db)
-    return <%= struct.name.lowerCamelName %>_schema.<%= struct.name.PascalPluralName %>Response(**{
+    condition = <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Condition(
+<%_ struct.fields.forEach(function (field, key) { -%>
+        <%= field.name.lowerCamelName %>=<%= field.name.lowerCamelName %>,
+<%_ }) -%>
+    )
+    <%= struct.name.lowerCamelPluralName %> = await <%= struct.name.lowerCamelName %>_controller.list_<%= struct.name.lowerCamelPluralName %>(db, condition)
+    return <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalPluralName %>Response(**{
         "<%= struct.name.lowerCamelPluralName %>": <%= struct.name.lowerCamelPluralName %>,
         "count": len(<%= struct.name.lowerCamelPluralName %>)
     })

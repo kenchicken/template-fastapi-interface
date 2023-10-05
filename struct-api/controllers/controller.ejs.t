@@ -14,8 +14,9 @@ logger = logging.getLogger(__name__)
 
 async def list_<%= struct.name.lowerCamelPluralName %>(
         db: AsyncSession,
+        condition: <%= struct.name.lowerCamelName %>_schema.<%= struct.name.pascalName %>Condition,
 ) -> list[<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>]:
-    return await crud.list_<%= struct.name.lowerCamelPluralName %>(db)
+    return await crud.list_<%= struct.name.lowerCamelPluralName %>(db, condition)
 
 
 async def get_<%= struct.name.lowerCamelName %>(

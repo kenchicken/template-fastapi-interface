@@ -15,7 +15,14 @@ logger = logging.getLogger(__name__)
 
 
 async def list_<%= struct.name.lowerCamelPluralName %>(db: AsyncSession) -> list[<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>]:
-    result: Result = await db.execute(select(<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>))
+    filters = []
+    conditions = condition.model_dump(exclude_none=True)
+    for key, value in conditions.items():
+        filters.append(getattr(contract_model.Contract, key) == value)
+    result: Result = await db.execute(
+        select(<%= struct.name.lowerCamelName %>_model.<%= struct.name.pascalName %>)
+        .filter(*filters)
+    )
     <%= struct.name.lowerCamelPluralName %> = result.scalars().all()
     return <%= struct.name.lowerCamelPluralName %>
 
