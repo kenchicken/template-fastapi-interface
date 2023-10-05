@@ -3,6 +3,7 @@ to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/routers/${struct.
 force: true
 ---
 import logging
+import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
