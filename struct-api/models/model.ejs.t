@@ -2,8 +2,8 @@
 to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/models/${struct.name.lowerCamelName}.py` : null %>"
 force: true
 ---
-import datetime
 from sqlalchemy import Column, String, Integer, Text, DateTime, Boolean, ForeignKey
+from sqlalchemy.types import TIMESTAMP
 from sqlalchemy.orm import relationship
 from database import Base
 from models.mixins import TimestampMixin
@@ -29,7 +29,7 @@ class <%= struct.name.pascalName %>(Base, TimestampMixin):
     <%= field.name.lowerCamelName %> = Column(Integer)
     <%_ } -%>
     <%_ if (field.dataType === 'time') { -%>
-    <%= field.name.lowerCamelName %> = Column(DateTime)
+    <%= field.name.lowerCamelName %> = Column(type_=TIMESTAMP(timezone=True))
     <%_ } -%>
     <%_ if (field.dataType === 'bool') { -%>
     <%= field.name.lowerCamelName %> = Column(Boolean)
