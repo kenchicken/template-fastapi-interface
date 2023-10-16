@@ -1,5 +1,5 @@
 ---
-to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/schemas/${struct.name.lowerCamelName}.py` : null %>"
+to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/schemas/${struct.name.lowerSnakeName}.py` : null %>"
 force: true
 ---
 import datetime
@@ -8,18 +8,18 @@ from pydantic import BaseModel, Field
 
 class <%= struct.name.pascalName %>Base(BaseModel):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name.lowerCamelName !== 'id') { -%>
+  <%_ if (field.name.lowerSnakeName !== 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerCamelName %>: str | None = Field(None, example="")
+    <%= field.name.lowerSnakeName %>: str | None = Field(None, example="")
     <%_ } -%>
     <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %>: int | None = Field(None, example=0)
+    <%= field.name.lowerSnakeName %>: int | None = Field(None, example=0)
     <%_ } -%>
     <%_ if (field.dataType === 'time') { -%>
-    <%= field.name.lowerCamelName %>: datetime.datetime | None = Field(None, example="")
+    <%= field.name.lowerSnakeName %>: datetime.datetime | None = Field(None, example="")
     <%_ } -%>
     <%_ if (field.dataType === 'bool') { -%>
-    <%= field.name.lowerCamelName %>: bool | None = Field(None, example=True)
+    <%= field.name.lowerSnakeName %>: bool | None = Field(None, example=True)
     <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
@@ -31,12 +31,12 @@ class <%= struct.name.pascalName %>Request(<%= struct.name.pascalName %>Base):
 
 class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name.lowerCamelName === 'id') { -%>
+  <%_ if (field.name.lowerSnakeName === 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerCamelName %>: str
+    <%= field.name.lowerSnakeName %>: str
     <%_ } -%>
     <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %>: int
+    <%= field.name.lowerSnakeName %>: int
     <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
@@ -47,12 +47,12 @@ class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request
 
 class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name.lowerCamelName === 'id') { -%>
+  <%_ if (field.name.lowerSnakeName === 'id') { -%>
   <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerCamelName %>: str
+    <%= field.name.lowerSnakeName %>: str
   <%_ } -%>
   <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerCamelName %>: int
+    <%= field.name.lowerSnakeName %>: int
   <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
@@ -66,5 +66,5 @@ class <%= struct.name.pascalName %>Condition(<%= struct.name.pascalName %>Base):
 
 
 class <%= struct.name.pascalPluralName %>Response(BaseModel):
-    <%= struct.name.lowerCamelPluralName %>: list[<%= struct.name.pascalName %>]
+    <%= struct.name.lowerSnakePluralName %>: list[<%= struct.name.pascalName %>]
     count: int
