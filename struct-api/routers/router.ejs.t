@@ -15,7 +15,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.get('/<%= struct.name.lowerSnakePluralName %>', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalPluralName %>Response)
+@router.get('/<%= struct.name.lowerCamelPluralName %>', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalPluralName %>Response)
 async def list_<%= struct.name.lowerSnakePluralName %>(
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.dataType === 'string') { -%>
@@ -48,7 +48,7 @@ async def list_<%= struct.name.lowerSnakePluralName %>(
     })
 
 
-@router.get('/<%= struct.name.lowerSnakeName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
+@router.get('/<%= struct.name.lowerCamelName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
 async def get_<%= struct.name.lowerSnakeName %>(
         <%= struct.name.lowerSnakeName %>_id: int,
         db: AsyncSession = Depends(get_db)
@@ -62,7 +62,7 @@ async def get_<%= struct.name.lowerSnakeName %>(
     return <%= struct.name.lowerSnakeName %>
 
 
-@router.post('/<%= struct.name.lowerSnakeName %>', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
+@router.post('/<%= struct.name.lowerCamelName %>', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
 async def create_<%= struct.name.lowerSnakeName %>(
         <%= struct.name.lowerSnakeName %>: <%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>Request,
         db: AsyncSession = Depends(get_db)
@@ -73,7 +73,7 @@ async def create_<%= struct.name.lowerSnakeName %>(
     return await <%= struct.name.lowerSnakeName %>_controller.create_<%= struct.name.lowerSnakeName %>(db, <%= struct.name.lowerSnakeName %>)
 
 
-@router.put('/<%= struct.name.lowerSnakeName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
+@router.put('/<%= struct.name.lowerCamelName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)
 async def update_<%= struct.name.lowerSnakeName %>(
         <%= struct.name.lowerSnakeName %>_id: int,
         <%= struct.name.lowerSnakeName %>: <%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>Request,
@@ -88,7 +88,7 @@ async def update_<%= struct.name.lowerSnakeName %>(
     return <%= struct.name.lowerSnakeName %>
 
 
-@router.delete('/<%= struct.name.lowerSnakeName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'])
+@router.delete('/<%= struct.name.lowerCamelName %>/{<%= struct.name.lowerSnakeName %>_id}', tags=['<%= struct.name.lowerSnakeName %>'])
 async def delete_<%= struct.name.lowerSnakeName %>(
         <%= struct.name.lowerSnakeName %>_id: int,
         db: AsyncSession = Depends(get_db)
