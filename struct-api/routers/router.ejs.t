@@ -43,7 +43,7 @@ async def list_<%= struct.name.lowerSnakePluralName %>(
     )
     <%= struct.name.lowerSnakePluralName %> = await <%= struct.name.lowerSnakeName %>_controller.list_<%= struct.name.lowerSnakePluralName %>(db, condition)
     return <%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalPluralName %>Response(**{
-        "<%= struct.name.lowerSnakePluralName %>": <%= struct.name.lowerSnakePluralName %>,
+        "<%= struct.name.lowerCamelPluralName %>": <%= struct.name.lowerSnakePluralName %>,
         "count": len(<%= struct.name.lowerSnakePluralName %>)
     })
 

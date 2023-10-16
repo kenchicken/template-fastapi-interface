@@ -25,7 +25,7 @@ python-jose = "^3.3.0"
 passlib = "^1.7.4"
 pydantic-settings = "^2.0.3"
 asyncpg = "^0.28.0"
-
+stringcase = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest-asyncio = "^0.20.3"

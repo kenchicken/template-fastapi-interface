@@ -2,6 +2,7 @@
 to: "<%= struct.generateEnable ? `${rootDirectory}/backend/app/schemas/${struct.name.lowerSnakeName}.py` : null %>"
 force: true
 ---
+import stringcase
 import datetime
 from pydantic import BaseModel, Field
 
@@ -28,6 +29,9 @@ class <%= struct.name.pascalName %>Base(BaseModel):
 class <%= struct.name.pascalName %>Request(<%= struct.name.pascalName %>Base):
     pass
 
+    class Config:
+        alias_generator = stringcase.camelcase
+
 
 class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request):
 <%_ struct.fields.forEach(function (field, key) { -%>
@@ -43,6 +47,8 @@ class <%= struct.name.pascalName %>Response(<%= struct.name.pascalName %>Request
 
     class Config:
         from_attributes = True
+        allow_population_by_field_name = True
+        alias_generator = stringcase.camelcase
 
 
 class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
@@ -64,7 +70,15 @@ class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
 class <%= struct.name.pascalName %>Condition(<%= struct.name.pascalName %>Base):
     id: int | None = Field(None, example=0)
 
+    class Config:
+        alias_generator = stringcase.camelcase
+
 
 class <%= struct.name.pascalPluralName %>Response(BaseModel):
     <%= struct.name.lowerSnakePluralName %>: list[<%= struct.name.pascalName %>]
     count: int
+
+    class Config:
+        from_attributes = True
+        allow_population_by_field_name = True
+        alias_generator = stringcase.camelcase
