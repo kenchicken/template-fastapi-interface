@@ -42,8 +42,16 @@ async def list_<%= struct.name.lowerSnakePluralName %>(
 <%_ }) -%>
     )
     <%= struct.name.lowerSnakePluralName %> = await <%= struct.name.lowerSnakeName %>_controller.list_<%= struct.name.lowerSnakePluralName %>(db, condition)
+    schema_<%= struct.name.lowerSnakePluralName %> = []
+    for <%= struct.name.lowerSnakeName %> in <%= struct.name.lowerSnakePluralName %>:
+        schema_<%= struct.name.lowerSnakeName %> = {
+<%_ struct.fields.forEach(function (field, key) { -%>
+            '<%= field.name.lowerCamelName %>': <%= struct.name.lowerSnakeName %>.<%= field.name.lowerSnakeName %>,
+<%_ }) -%>
+        }
+        schema_<%= struct.name.lowerSnakePluralName %>.append(schema_<%= struct.name.lowerSnakeName %>)
     return <%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalPluralName %>Response(**{
-        "<%= struct.name.lowerCamelPluralName %>": <%= struct.name.lowerSnakePluralName %>,
+        "<%= struct.name.lowerCamelPluralName %>": schema_<%= struct.name.lowerSnakePluralName %>,
         "count": len(<%= struct.name.lowerSnakePluralName %>)
     })
 
@@ -59,7 +67,11 @@ async def get_<%= struct.name.lowerSnakeName %>(
     <%= struct.name.lowerSnakeName %> = await <%= struct.name.lowerSnakeName %>_controller.get_<%= struct.name.lowerSnakeName %>(db, <%= struct.name.lowerSnakeName %>_id)
     if <%= struct.name.lowerSnakeName %> is None:
         raise HTTPException(status_code=404, detail='<%= struct.name.lowerSnakeName %> not found')
-    return <%= struct.name.lowerSnakeName %>
+    return {
+<%_ struct.fields.forEach(function (field, key) { -%>
+        '<%= field.name.lowerCamelName %>': <%= struct.name.lowerSnakeName %>.<%= field.name.lowerSnakeName %>,
+<%_ }) -%>
+    }
 
 
 @router.post('/<%= struct.name.lowerCamelName %>', tags=['<%= struct.name.lowerSnakeName %>'], response_model=<%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>)

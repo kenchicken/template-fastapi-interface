@@ -11,25 +11,30 @@ class <%= struct.name.pascalName %>Base(BaseModel):
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name.lowerSnakeName !== 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerSnakeName %>: str | None = Field(None, example="")
+    <%= field.name.lowerSnakeName %>: str | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example="")
     <%_ } -%>
     <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerSnakeName %>: int | None = Field(None, example=0)
+    <%= field.name.lowerSnakeName %>: int | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example=0)
     <%_ } -%>
     <%_ if (field.dataType === 'time') { -%>
-    <%= field.name.lowerSnakeName %>: datetime.datetime | None = Field(None, example="")
+    <%= field.name.lowerSnakeName %>: datetime.datetime | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example="")
     <%_ } -%>
     <%_ if (field.dataType === 'bool') { -%>
-    <%= field.name.lowerSnakeName %>: bool | None = Field(None, example=True)
+    <%= field.name.lowerSnakeName %>: bool | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example=True)
     <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
+
+    class Config:
+        allow_population_by_field_name = True
+        alias_generator = stringcase.camelcase
 
 
 class <%= struct.name.pascalName %>Request(<%= struct.name.pascalName %>Base):
     pass
 
     class Config:
+        allow_population_by_field_name = True
         alias_generator = stringcase.camelcase
 
 
@@ -65,6 +70,7 @@ class <%= struct.name.pascalName %>(<%= struct.name.pascalName %>Base):
 
     class Config:
         from_attributes = True
+        allow_population_by_field_name = True
 
 
 class <%= struct.name.pascalName %>Condition(<%= struct.name.pascalName %>Base):

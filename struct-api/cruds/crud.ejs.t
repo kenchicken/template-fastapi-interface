@@ -48,8 +48,8 @@ async def update_<%= struct.name.lowerSnakeName %>(
     db: AsyncSession, <%= struct.name.lowerSnakeName %>_create: <%= struct.name.lowerSnakeName %>_schema.<%= struct.name.pascalName %>Request, original: <%= struct.name.lowerSnakeName %>_model.<%= struct.name.pascalName %>
 ) -> <%= struct.name.lowerSnakeName %>_model.<%= struct.name.pascalName %>:
 <%_ struct.fields.forEach(function (field, key) { -%>
-  <%_ if (field.name.lowerCamelName !== 'id') { -%>
-    original.<%= field.name.lowerCamelName %> = <%= struct.name.lowerSnakeName %>_create.<%= field.name.lowerCamelName %>
+  <%_ if (field.name.lowerSnakeName !== 'id') { -%>
+    original.<%= field.name.lowerSnakeName %> = <%= struct.name.lowerSnakeName %>_create.<%= field.name.lowerSnakeName %>
   <%_ } -%>
 <%_ }) -%>
     db.add(original)
