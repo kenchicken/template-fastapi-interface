@@ -11,16 +11,16 @@ class <%= struct.name.pascalName %>Base(BaseModel):
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name.lowerSnakeName !== 'id') { -%>
     <%_ if (field.dataType === 'string') { -%>
-    <%= field.name.lowerSnakeName %>: str | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example="")
+    <%= field.name.lowerSnakeName %>: str | None = Field(None, alias='<%= field.name.lowerCamelName %>', example="")
     <%_ } -%>
     <%_ if (field.dataType === 'number') { -%>
-    <%= field.name.lowerSnakeName %>: int | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example=0)
+    <%= field.name.lowerSnakeName %>: int | None = Field(None, alias='<%= field.name.lowerCamelName %>', example=0)
     <%_ } -%>
     <%_ if (field.dataType === 'time') { -%>
-    <%= field.name.lowerSnakeName %>: datetime.datetime | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example="")
+    <%= field.name.lowerSnakeName %>: datetime.datetime | None = Field(None, alias='<%= field.name.lowerCamelName %>', example="")
     <%_ } -%>
     <%_ if (field.dataType === 'bool') { -%>
-    <%= field.name.lowerSnakeName %>: bool | None = Field(None, alias='<%= field.name.lowerCamelCase %>', example=True)
+    <%= field.name.lowerSnakeName %>: bool | None = Field(None, alias='<%= field.name.lowerCamelName %>', example=True)
     <%_ } -%>
   <%_ } -%>
 <%_ }) -%>
