@@ -6,6 +6,8 @@ import logging
 import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
+from typing import Annotated
+from schemas import auth as schema_auth
 
 import schemas.<%= struct.name.lowerSnakeName %> as <%= struct.name.lowerSnakeName %>_schema
 from controllers import <%= struct.name.lowerSnakeName %>_controller as <%= struct.name.lowerSnakeName %>_controller
