@@ -37,7 +37,7 @@ class <%= struct.name.pascalName %>(Base, TimestampMixin):
   <%_ } -%>
 <%_ }) -%>
 
-  def toDict(self):
+  def to_dict(self):
     return {
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name.lowerSnakeName !== 'id') { -%>
