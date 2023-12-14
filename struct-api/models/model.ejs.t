@@ -41,7 +41,7 @@ class <%= struct.name.pascalName %>(Base, TimestampMixin):
     return {
 <%_ struct.fields.forEach(function (field, key) { -%>
   <%_ if (field.name.lowerSnakeName !== 'id') { -%>
-      "<%= field.name.lowerSnakeName %>": self.<%= field.name.lowerSnakeName %>,
+      "<%= field.name.lowerCamelName %>": self.<%= field.name.lowerSnakeName %>,
   <%_ } -%>
 <%_ }) -%>
     }
